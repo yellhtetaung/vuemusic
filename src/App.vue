@@ -1,53 +1,54 @@
 <template>
   <v-app>
     <v-main>
-      <v-container-fluid>
-        <v-row class="justify-center py-3">
-          <v-col cols="12" class="black white--text">
-            <h1 class="text-center">My Music</h1>
-          </v-col>
+      <v-row class="justify-center py-3">
+        <v-col cols="12" class="black white--text">
+          <h1 class="text-center">My Music</h1>
+        </v-col>
 
-          <v-col class="col-12 mt-3">
-            <h1 class="text-center font-weight-bold">
-              {{ this.current.title }} - <span>{{ this.current.artist }}</span>
-            </h1>
-          </v-col>
+        <v-col cols="12" class="text-center">
+          <h2>
+            {{ this.current.title }} - <span>{{ this.current.artist }}</span>
+          </h2>
+        </v-col>
 
-          <v-col cols="12" class="mx-auto text-center mt-3">
-            <v-btn fab class="mx-10 primary" @click="prev">
-              <v-icon>mdi-skip-previous</v-icon>
-            </v-btn>
-            <v-btn
-              class="mx-10 primary"
-              fab
-              large
-              @click="play"
-              v-if="!isPlaying"
-            >
-              <v-icon dark>mdi-play</v-icon>
-            </v-btn>
-            <v-btn class="mx-10 primary" fab large @click="pause" v-else>
-              <v-icon>mdi-pause</v-icon>
-            </v-btn>
-            <v-btn class="mx-10 primary" fab @click="next">
-              <v-icon>mdi-skip-next</v-icon>
-            </v-btn>
-          </v-col>
+        <v-col cols="12" class="text-center">
+          <v-btn class="mx-5 primary" fab @click="prev">
+            <v-icon>mdi-skip-previous</v-icon>
+          </v-btn>
 
-          <v-col cols="12" class="text-center">
-            <h1 class="my-5">The Playlist</h1>
-            <v-btn
-              v-for="song in songs"
-              :key="song"
-              x-large
-              class="pink darken-1 white--text songlists my-1"
-              @click="play(song)"
-            >
-              {{ song.title }} - {{ song.artist }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container-fluid>
+          <v-btn
+            class="mx-5 primary"
+            fab
+            x-large
+            v-if="!isPlaying"
+            @click="play"
+          >
+            <v-icon>mdi-play</v-icon>
+          </v-btn>
+
+          <v-btn class="mx-5 primary" fab x-large v-else @click="pause">
+            <v-icon>mdi-pause</v-icon>
+          </v-btn>
+
+          <v-btn class="mx-5 primary" fab @click="next">
+            <v-icon>mdi-skip-next</v-icon>
+          </v-btn>
+        </v-col>
+
+        <v-col cols="12" class="text-center">
+          <h1 class="my-5">The Playlist</h1>
+          <v-btn
+            v-for="(song, index) in songs"
+            :key="index"
+            x-large
+            class="pink darken-1 white--text songlists my-1"
+            @click="play(song)"
+          >
+            {{ song.title }} - {{ song.artist }}
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
